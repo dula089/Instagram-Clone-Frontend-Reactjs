@@ -1,0 +1,63 @@
+.container {
+  border-style: groove;
+  height: 800px;
+  width: 500px;
+  padding: 100px;
+  margin: 30px;
+  margin-left: 500px;
+}
+.face {
+  float: left;
+  width: 100%;
+  margin: auto;
+  margin-top: 6px;
+}
+input,
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; 
+}
+.fb {
+  background-color: #008DDA;
+  color: white;
+}
+input:hover,
+.btn:hover {
+  opacity: 1;
+}
+p {
+  text-align: center;
+}
+.sign {
+    float: left;
+    width: 100%;
+    margin: auto;
+    margin-top: 6px;
+}
+.signup{
+    background-color: #03AED2;
+  color: white;
+}
+.foot{
+    padding-left: 200px;
+}
+.foot1{
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+   
+}
+.foot1:hover{
+    opacity: 1;
+    text-decoration: underline;
+    color: gray;
+}
+

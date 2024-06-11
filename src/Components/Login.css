@@ -1,0 +1,49 @@
+.container1{
+    border-style: groove;
+    height: 800px;
+    width: 500px;
+    padding: 100px;
+    margin: 30px;
+    margin-left: 500px;
+}
+input,
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; 
+}
+.login{
+    background-color: #03AED2;
+  color: white;
+}
+.loginc {
+    float: left;
+    width: 100%;
+    margin: auto;
+    margin-top: 6px;
+}
+.faceb {
+    float: left;
+    width: 100%;
+    margin: auto;
+    margin-top: 6px;
+  }
+  .fbook {
+    background-color: white;
+    color: #5C88C4;
+  }
+  .forgot{
+    text-decoration: none;
+    padding-left: 85px;
+  }
+  .signup1{
+    text-decoration: none;
+    color: #3572EF;
+  }
