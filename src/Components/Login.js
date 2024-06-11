@@ -40,7 +40,7 @@ function Login() {
       <br></br>
       <p>
         Not registered?{" "}
-        <a href="#" className="signup1" >
+        <a href="/Signup" className="signup1" >
           Sign up
         </a>
       </p>
