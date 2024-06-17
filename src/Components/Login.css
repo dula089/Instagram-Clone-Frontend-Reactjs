@@ -1,10 +1,26 @@
-.container1{
-    border-style: groove;
-    height: 800px;
-    width: 500px;
-    padding: 100px;
-    margin: 30px;
-    margin-left: 500px;
+.img {
+  height: 738px;
+  width: 342px;
+  background-image: url(insta1.jpg);
+  margin: 70px;
+  margin-left: 250px;
+}
+.img2 {
+  height: 732px;
+  width: 342px;
+  margin-left: 150px;
+  background-image: url(insta2.jpg);
+  border-radius: 28px;
+}
+.container1 {
+  border-style: groove;
+  height: 500px;
+  width: 450px;
+  padding: 100px;
+  /* margin: 60px; */
+  margin-top: 50px;
+  border-radius: 15px;
+  margin-left: 500px;
 }
 input,
 .btn {
@@ -17,33 +33,50 @@ input,
   display: inline-block;
   font-size: 17px;
   line-height: 20px;
-  text-decoration: none; 
+  text-decoration: none;
+  cursor: pointer;
 }
-.login{
-    background-color: #03AED2;
+
+.submit-button {
+  background-color: #03aed2;
   color: white;
+  border: none;
+  height: 40px;
+  border-radius: 10px;
+  float: left;
+  width: 100%;
+  margin: auto;
+  margin-top: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.loginc {
-    float: left;
-    width: 100%;
-    margin: auto;
-    margin-top: 6px;
+input:hover,
+.btn:hover {
+  opacity: 1;
+}
+.btn:hover {
+  opacity: 20;
 }
 .faceb {
-    float: left;
-    width: 100%;
-    margin: auto;
-    margin-top: 6px;
-  }
-  .fbook {
-    background-color: white;
-    color: #5C88C4;
-  }
-  .forgot{
-    text-decoration: none;
-    padding-left: 85px;
-  }
-  .signup1{
-    text-decoration: none;
-    color: #3572EF;
-  }
+  float: left;
+  width: 100%;
+  margin: auto;
+  margin-top: 6px;
+}
+.fbook {
+  background-color: white;
+  color: #5c88c4;
+}
+.forgot {
+  text-decoration: none;
+  padding-left: 85px;
+}
+.signup1 {
+  text-decoration: none;
+  color: #3572ef;
+}
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+}

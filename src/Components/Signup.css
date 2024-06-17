@@ -1,6 +1,6 @@
 .container {
   border-style: groove;
-  height: 800px;
+  height: 750px;
   width: 500px;
   padding: 100px;
   margin: 30px;
@@ -23,10 +23,10 @@ input,
   display: inline-block;
   font-size: 17px;
   line-height: 20px;
-  text-decoration: none; 
+  text-decoration: none;
 }
 .fb {
-  background-color: #008DDA;
+  background-color: #008dda;
   color: white;
 }
 input:hover,
@@ -37,27 +37,31 @@ p {
   text-align: center;
 }
 .sign {
-    float: left;
-    width: 100%;
-    margin: auto;
-    margin-top: 6px;
+  float: left;
+  width: 100%;
+  margin: auto;
+  margin-top: 6px;
 }
-.signup{
-    background-color: #03AED2;
+.signup {
+  background-color: #03aed2;
   color: white;
 }
-.foot{
-    padding-left: 200px;
+.foot {
+  padding-left: 200px;
 }
-.foot1{
-    text-decoration: none;
-    color: black;
-    padding: 20px;
-   
+.foot1 {
+  text-decoration: none;
+  color: black;
+  padding: 20px;
 }
-.foot1:hover{
-    opacity: 1;
-    text-decoration: underline;
-    color: gray;
+.foot1:hover {
+  opacity: 1;
+  text-decoration: underline;
+  color: gray;
 }
 
+.error-message{
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+}
