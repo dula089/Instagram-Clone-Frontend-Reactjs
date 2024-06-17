@@ -20,7 +20,7 @@ function ForgotPass (){
         </div>
         <a href="#">Can't reset your password?</a>
         <br></br><p>OR</p>
-        <a href="#" className="create">Create new account</a>
+        <a href="/signup" className="create">Create new account</a>
         </div>
         <div className="foot">
     <footer>
