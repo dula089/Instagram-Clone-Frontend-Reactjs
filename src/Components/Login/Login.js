@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Login.css";
+import { FaFacebookF } from "react-icons/fa";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -54,7 +55,13 @@ function Login() {
       <div className="img">
         <div className="img2">
           <div className="container1">
-            <h1 style={{ fontFamily: "Pristina", fontSize: "70px" }}>
+            <h1
+              style={{
+                fontFamily: "Pristina",
+                fontSize: "70px",
+                textAlign: "center",
+              }}
+            >
               Instagram
             </h1>
 
@@ -89,10 +96,46 @@ function Login() {
               </div>
 
               <button className="submit-button" type="submit">
-                Login
+                <a
+                  href="/home"
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                    fontSize: "15px",
+                  }}
+                >
+                  Login
+                </a>
               </button>
+              <br />
+              <br></br>
+              <br></br>
+              <br></br>
+              <hr></hr>
+              <br></br>
+              <p>OR</p>
+              <br></br>
+              <hr></hr>
+              <br />
+              <div className="faceb">
+                <a href="#" className="fbook btn">
+                  <p style={{ textAlign: "center" }}>
+                    <FaFacebookF size={18} />
+                    &nbsp;&nbsp;&nbsp; Login with Facebook
+                  </p>
+                </a>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+
+              <a href="/forgot" className="forgot">
+                Forgot password?
+              </a>
             </form>
-            <br></br>
+            <br />
+
             <p>
               Not registered?{" "}
               <a href="/signup" className="signup1">
@@ -102,7 +145,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className="foot">
+      <div className="foot-">
         <footer>
           <a href="" className="foot1">
             Meta

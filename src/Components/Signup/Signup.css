@@ -1,6 +1,6 @@
 .container {
   border-style: groove;
-  height: 750px;
+  height: 800px;
   width: 500px;
   padding: 100px;
   margin: 30px;
@@ -12,8 +12,22 @@
   margin: auto;
   margin-top: 6px;
 }
-input,
-.btn {
+input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: 3px solid lightgrey;
+  cursor: pointer;
+}
+.btn{
   width: 100%;
   padding: 12px;
   border: none;
@@ -25,6 +39,7 @@ input,
   line-height: 20px;
   text-decoration: none;
 }
+
 .fb {
   background-color: #008dda;
   color: white;
@@ -48,10 +63,12 @@ p {
 }
 .foot {
   padding-left: 200px;
+  margin-top: 50px;
 }
+
 .foot1 {
   text-decoration: none;
-  color: black;
+  color: lightslategray;
   padding: 20px;
 }
 .foot1:hover {

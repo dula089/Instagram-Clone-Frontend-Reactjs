@@ -1,5 +1,6 @@
 import "./Signup.css";
 import { useState } from "react";
+import { FaFacebookF } from "react-icons/fa";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -61,11 +62,22 @@ function Signup() {
   return (
     <div>
       <div className="container">
-        <h1 style={{ fontFamily: "Pristina", fontSize: "70px" }}>Instagram</h1>
+        <h1
+          style={{
+            fontFamily: "Pristina",
+            fontSize: "70px",
+            marginLeft: "20px",
+          }}
+        >
+          Instagram
+        </h1>
         <p>Sign up to see photos and videos from your friends.</p>
         <div className="face">
           <a href="#" className="fb btn">
-            <p style={{ textAlign: "center" }}>Login with Facebook</p>
+            <p style={{ textAlign: "center" }}>
+              <FaFacebookF size={15} />
+              <p>Login with Facebook</p>
+            </p>
           </a>
         </div>
 
@@ -142,21 +154,21 @@ function Signup() {
             By signing up, you agree to our
             <a
               href="https://help.instagram.com/581066165581870/?locale=en_US"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "blue" }}
             >
               Terms
             </a>
             ,{" "}
             <a
               href="https://www.facebook.com/privacy/policy"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "blue" }}
             >
               Privacy Policy
             </a>{" "}
             and{" "}
             <a
               href="https://privacycenter.instagram.com/policies/cookies/"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "blue" }}
             >
               Cookies Policy
             </a>

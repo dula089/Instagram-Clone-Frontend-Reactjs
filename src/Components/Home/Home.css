@@ -1,0 +1,40 @@
+.instagram-icon {
+  padding: 50px;
+  font-family: Pristina;
+  font-size: 30px;
+  font-weight: bold;
+}
+.Home-icon {
+  padding-left: 250px;
+  padding-right: 10px;
+}
+.search-icon {
+  padding: 20px;
+}
+.explore-icon {
+  padding: 20px;
+}
+.reels-icon {
+  padding: 20px;
+}
+.messenger-icon {
+  padding: 20px;
+}
+.new-icon {
+  padding: 20px;
+}
+.noti-icon {
+  padding: 20px;
+}
+.thread-icon {
+  padding-left: 400px;
+}
+.more-icon {
+  padding: 20px;
+}
+nav {
+  margin-top: 20px;
+}
+a {
+  color: black;
+}

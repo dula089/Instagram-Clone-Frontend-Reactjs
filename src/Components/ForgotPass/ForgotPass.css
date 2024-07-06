@@ -1,0 +1,38 @@
+.container2{
+    border-style: groove;
+    height: 600px;
+    width: 550px;
+    padding: 100px;
+    margin: 30px;
+    margin-left: 500px;
+}
+.create{
+    text-decoration: none;
+    color: blue;
+   margin-left: 110px;
+}
+.create:hover{
+    color: grey;
+}
+.lock-icon{
+    align-items: center;
+    margin-left: 100px;
+}
+.login{
+ background-color: #03aed2;
+ color: white;
+ border-radius: 10px;
+}
+.reset{
+    text-decoration: none;
+    margin-left: 80px;
+}
+.foot2{
+    margin-top: 50px;
+  padding-left: 200px; 
+}
+.back{
+    text-decoration: none;
+    color: rgb(58, 58, 190);
+   margin-left: 130px;
+}
