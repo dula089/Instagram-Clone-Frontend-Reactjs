@@ -86,20 +86,7 @@ input:hover,
   font-size: 14px;
   margin-top: 5px;
 }
-.foot- {
-  margin-top: 250px;
-  padding-left: 200px;
-}
-.foot1 {
-  text-decoration: none;
-  color: lightslategray;
-  padding: 20px;
-}
-.foot1:hover {
-  opacity: 1;
-  text-decoration: underline;
-  color: gray;
-}
+
 .error-message{
   color: #ff0000;
   font-size: 14px;

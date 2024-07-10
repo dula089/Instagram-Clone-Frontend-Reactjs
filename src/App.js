@@ -6,7 +6,12 @@ import Home from "./Components/Home/Home";
 import Post from "./Components/Post/Post";
 import ForgotPass from "./Components/ForgotPass/ForgotPass";
 import { Routes, Route } from "react-router-dom";
+import Nav from "./Components/NavBar/Nav";
+import MoreMenu from "./Components/MoreButton/MoreMenu";
 import Table from "./Components/Table";
+import Create from "./Components/Pages/Create/Ceate";
+
+import React from "react";
 
 function App() {
   return (
@@ -18,11 +23,10 @@ function App() {
         <Route path="/post" element={<Post />} />
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/table" element={<Table />} />
+        <Route path="/nav" element={<Nav />} />
+        <Route path="/more" element={<MoreMenu />} />
+        <Route path="/create" element={<Create />} />
       </Routes>
-      {/* <Login></Login>
-      <Signup></Signup>
-     <ForgotPass></ForgotPass> */}
-      {/* <Lifecyclea></Lifecyclea> */}
     </div>
   );
 }

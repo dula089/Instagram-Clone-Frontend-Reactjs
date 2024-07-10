@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Login.css";
 import { FaFacebookF } from "react-icons/fa";
+import Footer from "../Footer/Footer";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -145,40 +146,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className="foot-">
-        <footer>
-          <a href="" className="foot1">
-            Meta
-          </a>
-          <a href="" className="foot1">
-            About
-          </a>
-          <a href="" className="foot1">
-            Blog
-          </a>
-          <a href="" className="foot1">
-            Jobs
-          </a>
-          <a href="" className="foot1">
-            Help
-          </a>
-          <a href="" className="foot1">
-            API
-          </a>
-          <a href="" className="foot1">
-            Privacy
-          </a>
-          <a href="" className="foot1">
-            Terms
-          </a>
-          <a href="" className="foot1">
-            Locations
-          </a>
-          <a href="" className="foot1">
-            Contact Uploading & Non-Users
-          </a>
-        </footer>
-      </div>
+     <Footer></Footer>
     </div>
   );
 }

@@ -1,11 +1,25 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./Post.css";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import IconButton from "@mui/material/IconButton";
 
-function Post( props ) {
-  console.log('props',props)
+function Post(props) {
+  const [liked, setLiked] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
+
+  const toggleSave = () => {
+    setSaved(!saved);
+  };
+
   return (
-    <article className="Post" >
-      <header>
+    <article className="Post">
+      <header className="Post-header">
         <div className="Post-user">
           <div className="Post-user-profilepicture">
             <img
@@ -13,21 +27,35 @@ function Post( props ) {
               alt="John D. Veloper"
             />
           </div>
-
           <div className="Post-user-nickname">
             <span>{props.title}</span>
           </div>
         </div>
       </header>
 
+    
       <div className="Post-image">
-        <div className="Post-image-bg">
-          <img className="image" />
-        </div>
+        <img
+          src={`https://picsum.photos/seed/${props.id}/500`}
+          alt="Post"
+          className="Post-image-bg"
+        />
+      </div>
+
+      <div className="Post-actions">
+        <IconButton onClick={toggleLike} aria-label="like">
+          <FavoriteBorderIcon color={liked ? "error" : "action"} />
+        </IconButton>
+        <IconButton aria-label="comment">
+          <ChatBubbleOutlineIcon />
+        </IconButton>
+        <IconButton onClick={toggleSave} aria-label="save">
+          <BookmarkBorderIcon color={saved ? "primary" : "action"} />
+        </IconButton>
       </div>
 
       <div className="Post-caption">
-        <strong>John D. Veloper </strong> Loving Educative!
+        <strong>{props.title}</strong> Loving Educative!
       </div>
     </article>
   );
