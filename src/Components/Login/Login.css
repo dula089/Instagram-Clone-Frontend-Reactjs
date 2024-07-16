@@ -1,3 +1,4 @@
+
 .img {
   height: 429px;
   width: 200px;
@@ -7,6 +8,7 @@
   margin-left: 350px;
   margin-top: 100px;
 }
+
 .img2 {
   height: 428px;
   width: 200px;
@@ -15,6 +17,7 @@
   background-size: 200px;
   border-radius: 25px;
 }
+
 .container1 {
   border-style: groove;
   height: 600px;
@@ -24,6 +27,7 @@
   border-radius: 15px;
   margin-left: 400px;
 }
+
 input {
   width: 100%;
   padding: 12px;
@@ -54,13 +58,16 @@ input {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 input:hover,
 .btn:hover {
   opacity: 1;
 }
+
 .btn:hover {
   opacity: 20;
 }
+
 .faceb {
   float: left;
   width: 100%;
@@ -69,26 +76,54 @@ input:hover,
   background-color: #008dda;
   border-radius: 10px;
 }
+
 .fbook {
   color: white;
 }
+
 .forgot {
   text-decoration: none;
   padding-left: 120px;
   color: #3572ef;
 }
+
 .signup1 {
   text-decoration: none;
   color: #3572ef;
 }
+
 .error-message {
   color: #ff0000;
   font-size: 14px;
   margin-top: 5px;
 }
 
-.error-message{
-  color: #ff0000;
-  font-size: 14px;
-  margin-top: 5px;
+
+@media screen and (max-width: 600px) {
+  .img,
+  .img2 {
+    background-image: none;
+    margin-left: 0px;
+  }
+
+  .container1 {
+    width: 300px;
+    margin: auto;
+    margin-top: 0px;
+    margin-left: 20px;
+  }
+
+  .forgot {
+    padding-left: 0;
+    display: block;
+    text-align: center;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+
+  .faceb {
+    width: 100%;
+  }
 }

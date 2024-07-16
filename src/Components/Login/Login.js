@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Login.css";
 import { FaFacebookF } from "react-icons/fa";
 import Footer from "../Footer/Footer";
@@ -10,6 +10,17 @@ function Login() {
   });
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    // Load email from local storage
+    const savedEmail = localStorage.getItem("email");
+    if (savedEmail) {
+      setFormData((prevData) => ({
+        ...prevData,
+        email: savedEmail,
+      }));
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,10 +36,11 @@ function Login() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
+      // Save email to local storage
+      localStorage.setItem("email", formData.email);
       console.log("Form submitted successfully!");
     } else {
-      console.log(`Form submission failed
-         due to validation errors.`);
+      console.log("Form submission failed due to validation errors.");
     }
   };
 
@@ -44,8 +56,7 @@ function Login() {
     if (!data.password) {
       errors.password = "Password is required";
     } else if (data.password.length < 8) {
-      errors.password = `Password must be at 
-        least 8 characters long`;
+      errors.password = "Password must be at least 8 characters long";
     }
 
     return errors;

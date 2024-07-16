@@ -15,7 +15,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { RiThreadsLine, RiMessengerLine } from "react-icons/ri";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MoreMenu from "../MoreButton/MoreMenu";
-import Create from "../Pages/Create/Ceate";
+import Create from "../Pages/Create/Create";
 
 import "./Nav.css";
 
@@ -65,6 +65,7 @@ function Nav() {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
+          display: { xs: "none", md: "block" }, // Hide Drawer on small screens
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
@@ -128,6 +129,24 @@ function Nav() {
           <MoreMenu />
         </List>
       </Drawer>
+
+      {/* Bottom Navigation for small screens */}
+      <div className="bottom-nav">
+        <List sx={{ display: "flex", justifyContent: "space-around" }}>
+          {middleIconsList.map(({ text, icon }) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>{icon}</ListItemIcon>
+              </ListItemButton>
+            </ListItem>
+          ))}
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon><AddBoxIcon sx={{ fontSize: iconSize, color: "black" }} /></ListItemIcon>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </div>
     </div>
   );
 }

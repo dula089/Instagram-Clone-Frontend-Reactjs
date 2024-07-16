@@ -1,4 +1,4 @@
-// import logo from './logo.svg';
+
 import "./App.css";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
@@ -9,7 +9,9 @@ import { Routes, Route } from "react-router-dom";
 import Nav from "./Components/NavBar/Nav";
 import MoreMenu from "./Components/MoreButton/MoreMenu";
 import Table from "./Components/Table";
-import Create from "./Components/Pages/Create/Ceate";
+import Create from "./Components/Pages/Create/Create";
+import EmojiiPicker from "./Components/Pages/EmojiPicker/EmojiPicker";
+
 
 import React from "react";
 
@@ -26,6 +28,7 @@ function App() {
         <Route path="/nav" element={<Nav />} />
         <Route path="/more" element={<MoreMenu />} />
         <Route path="/create" element={<Create />} />
+        <Route path="/emoji" element={<EmojiiPicker />} />
       </Routes>
     </div>
   );
