@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext, useState, useRef } from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
@@ -6,21 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import {
-  Divider,
-  Box,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Avatar,
-  TextField,
-} from "@mui/material";
+import { Divider, Box, ListItemButton, ListItemIcon, ListItemText, Avatar, TextField } from "@mui/material";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import PhotoSizeSelectActualOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActualOutlined";
 import SlideshowOutlinedIcon from "@mui/icons-material/SlideshowOutlined";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
 import EmojiPicker from "emoji-picker-react";
+import { PostContext } from "../../Post/PostContext";
+
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -39,14 +34,15 @@ const BootstrapDialogTitle = styled(DialogTitle)(({ theme }) => ({
 
 const iconSize = 30;
 
-export default function Create({ addPost }) { // Ensure addPost is a prop
-  const [open, setOpen] = React.useState(false);
-  const [selectedFile, setSelectedFile] = React.useState(null);
-  const [photoSelected, setPhotoSelected] = React.useState(false);
-  const [step, setStep] = React.useState(0);
-  const [caption, setCaption] = React.useState("");
-  const [showEmojiPicker, setShowEmojiPicker] = React.useState(false);
-  const fileInputRef = React.useRef(null);
+export default function Create() {
+  const { addPost } = useContext(PostContext);
+  const [open, setOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [photoSelected, setPhotoSelected] = useState(false);
+  const [step, setStep] = useState(0);
+  const [caption, setCaption] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const fileInputRef = useRef(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -91,11 +87,11 @@ export default function Create({ addPost }) { // Ensure addPost is a prop
 
   const handleShare = () => {
     const newPost = {
-      id: Date.now(), // Generate a unique ID
+      id: Date.now(),
       title: caption,
       body: URL.createObjectURL(selectedFile),
     };
-    addPost(newPost); // Call addPost function passed as a prop
+    addPost(newPost);
     handleClose();
   };
 

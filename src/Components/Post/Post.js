@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+
+import React, { useContext,useState } from "react";
 import "./Post.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import IconButton from "@mui/material/IconButton";
+import { PostContext } from "./PostContext";
 
-function Post(props) {
+function Post({ id, title, body }) {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
+ 
+  
 
   const toggleLike = () => {
     setLiked(!liked);
@@ -28,15 +32,14 @@ function Post(props) {
             />
           </div>
           <div className="Post-user-nickname">
-            <span>{props.title}</span>
+            <span>{title}</span>
           </div>
         </div>
       </header>
 
-    
       <div className="Post-image">
         <img
-          src={`https://picsum.photos/seed/${props.id}/500`}
+          src={`https://picsum.photos/seed/${id}/500`}
           alt="Post"
           className="Post-image-bg"
         />
@@ -55,7 +58,7 @@ function Post(props) {
       </div>
 
       <div className="Post-caption">
-        <strong>{props.title}</strong> Loving Educative!
+        <strong>{title}</strong> {body}
       </div>
     </article>
   );

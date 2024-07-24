@@ -16,10 +16,13 @@ import { RiThreadsLine, RiMessengerLine } from "react-icons/ri";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MoreMenu from "../MoreButton/MoreMenu";
 import Create from "../Pages/Create/Create";
+import { styled } from "@mui/material/styles";
+import Box from '@mui/material/Box';
 
 import "./Nav.css";
 
 const iconSize = 30;
+
 
 const middleIconsList = [
   {
@@ -56,7 +59,7 @@ const bottomIconsList = [
   { text: "Threads", icon: <RiThreadsLine size={iconSize} color="black" /> },
 ];
 
-function Nav() {
+function Nav({ addPost }) {
   const drawerWidth = 240;
 
   return (
@@ -65,7 +68,7 @@ function Nav() {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          display: { xs: "none", md: "block" }, // Hide Drawer on small screens
+          display: { xs: "none", md: "block" },
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
@@ -80,12 +83,27 @@ function Nav() {
         <div>
           <br />
           <br />
+          <Box  sx={{  display: { xs: "none", sm: "none", md: "none" } }}>
           <a
             href="./home"
             style={{
               textDecoration: "none",
               marginTop: "20px",
               color: "black",
+              // display: { xs: "none", sm: "none", md: "none" },
+            }}
+            className="instagram-icon"
+          >
+            Instagram
+          </a>
+    </Box>
+          <a
+            href="./home"
+            style={{
+              textDecoration: "none",
+              marginTop: "20px",
+              color: "black",
+              display: { xs: "none", sm: "none", md: "none" },
             }}
             className="instagram-icon"
           >
@@ -102,7 +120,7 @@ function Nav() {
                 </ListItemButton>
               </ListItem>
             ))}
-            <Create />
+            <Create addPost={addPost} />
           </List>
 
           <List>
@@ -130,9 +148,14 @@ function Nav() {
         </List>
       </Drawer>
 
-      {/* Bottom Navigation for small screens */}
       <div className="bottom-nav">
-        <List sx={{ display: "flex", justifyContent: "space-around" }}>
+        <List
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            display: { xs: "flex", sm: "flex", md: "flex" },
+          }}
+        >
           {middleIconsList.map(({ text, icon }) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
@@ -142,7 +165,9 @@ function Nav() {
           ))}
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon><AddBoxIcon sx={{ fontSize: iconSize, color: "black" }} /></ListItemIcon>
+              <ListItemIcon>
+                <AddBoxIcon sx={{ fontSize: iconSize, color: "black" }} />
+              </ListItemIcon>
             </ListItemButton>
           </ListItem>
         </List>

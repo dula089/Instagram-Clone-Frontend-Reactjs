@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./Login.css";
 import { FaFacebookF } from "react-icons/fa";
 import Footer from "../Footer/Footer";
+
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -10,17 +11,6 @@ function Login() {
   });
 
   const [errors, setErrors] = useState({});
-
-  useEffect(() => {
-    // Load email from local storage
-    const savedEmail = localStorage.getItem("email");
-    if (savedEmail) {
-      setFormData((prevData) => ({
-        ...prevData,
-        email: savedEmail,
-      }));
-    }
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,9 +26,14 @@ function Login() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Save email to local storage
+     
       localStorage.setItem("email", formData.email);
+      localStorage.setItem("password", formData.password);
+
       console.log("Form submitted successfully!");
+
+      
+      window.location.href = "/home";
     } else {
       console.log("Form submission failed due to validation errors.");
     }
@@ -108,8 +103,7 @@ function Login() {
               </div>
 
               <button className="submit-button" type="submit">
-                <a
-                  href="/home"
+                <span
                   style={{
                     textDecoration: "none",
                     color: "white",
@@ -117,7 +111,7 @@ function Login() {
                   }}
                 >
                   Login
-                </a>
+                </span>
               </button>
               <br />
               <br></br>
