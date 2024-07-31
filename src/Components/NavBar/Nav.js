@@ -17,12 +17,12 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MoreMenu from "../MoreButton/MoreMenu";
 import Create from "../Pages/Create/Create";
 import { styled } from "@mui/material/styles";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
+import Message from "../Pages/Message/Message";
 
 import "./Nav.css";
 
 const iconSize = 30;
-
 
 const middleIconsList = [
   {
@@ -83,20 +83,19 @@ function Nav({ addPost }) {
         <div>
           <br />
           <br />
-          <Box  sx={{  display: { xs: "none", sm: "none", md: "none" } }}>
-          <a
-            href="./home"
-            style={{
-              textDecoration: "none",
-              marginTop: "20px",
-              color: "black",
-              // display: { xs: "none", sm: "none", md: "none" },
-            }}
-            className="instagram-icon"
-          >
-            Instagram
-          </a>
-    </Box>
+          <Box sx={{ display: { xs: "none", sm: "none", md: "none" } }}>
+            <a
+              href="./home"
+              style={{
+                textDecoration: "none",
+                marginTop: "20px",
+                color: "black",
+              }}
+              className="instagram-icon"
+            >
+              Instagram
+            </a>
+          </Box>
           <a
             href="./home"
             style={{

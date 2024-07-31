@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+
+import React, { useContext,useState } from "react";
 import "./Post.css";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import IconButton from '@mui/material/IconButton';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import IconButton from "@mui/material/IconButton";
+import { PostContext } from "./PostContext";
 
 function Post({ id, title, body }) {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
+ 
+  
 
   const toggleLike = () => {
     setLiked(!liked);

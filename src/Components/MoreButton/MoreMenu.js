@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,9 +10,9 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
-import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import ReportProblemOutlinedIcon from "@mui/icons-material/ReportProblemOutlined";
 import { Divider } from "@mui/material";
+import SwitchAppearance from "../Pages/CustomSwitch/SwitchAppearance";
 import "./MoreMenu.css";
 
 const iconSize = 30;
@@ -29,10 +30,7 @@ const menu = [
     text: "Saved",
     icon: <TurnedInNotIcon sx={{ fontSize: iconSize, color: "black" }} />,
   },
-  {
-    text: "Switch appearance",
-    icon: <ModeNightOutlinedIcon sx={{ fontSize: iconSize, color: "black" }} />,
-  },
+ 
   {
     text: "Report a problem",
     icon: <ReportProblemOutlinedIcon sx={{ fontSize: iconSize, color: "black" }} />,
@@ -79,6 +77,7 @@ function MoreMenu() {
             <ListItemText primary={item.text} />
           </MenuItem>
         ))}
+        <SwitchAppearance />
         <Divider />
         <MenuItem>Switch Accounts</MenuItem>
         <Divider />

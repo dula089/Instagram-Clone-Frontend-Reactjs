@@ -1,46 +1,45 @@
-import React, { useContext, useState, useRef } from "react";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import { Divider, Box, ListItemButton, ListItemIcon, ListItemText, Avatar, TextField } from "@mui/material";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import PhotoSizeSelectActualOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActualOutlined";
-import SlideshowOutlinedIcon from "@mui/icons-material/SlideshowOutlined";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
-import EmojiPicker from "emoji-picker-react";
-import { PostContext } from "../../Post/PostContext";
-
-
+import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { addPost } from '../../redux/postsSlice';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import { Divider, Box, ListItemButton, ListItemIcon, ListItemText, Avatar, TextField } from '@mui/material';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import PhotoSizeSelectActualOutlinedIcon from '@mui/icons-material/PhotoSizeSelectActualOutlined';
+import SlideshowOutlinedIcon from '@mui/icons-material/SlideshowOutlined';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
+import EmojiPicker from 'emoji-picker-react';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
+  '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
   },
-  "& .MuiDialogActions-root": {
+  '& .MuiDialogActions-root': {
     padding: theme.spacing(1),
   },
 }));
 
 const BootstrapDialogTitle = styled(DialogTitle)(({ theme }) => ({
   padding: theme.spacing(2),
-  textAlign: "center",
-  position: "relative",
+  textAlign: 'center',
+  position: 'relative',
 }));
 
 const iconSize = 30;
 
 export default function Create() {
-  const { addPost } = useContext(PostContext);
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [photoSelected, setPhotoSelected] = useState(false);
   const [step, setStep] = useState(0);
-  const [caption, setCaption] = useState("");
+  const [caption, setCaption] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -53,7 +52,7 @@ export default function Create() {
     setPhotoSelected(false);
     setSelectedFile(null);
     setStep(0);
-    setCaption("");
+    setCaption('');
   };
 
   const handleButtonClick = () => {
@@ -91,7 +90,7 @@ export default function Create() {
       title: caption,
       body: URL.createObjectURL(selectedFile),
     };
-    addPost(newPost);
+    dispatch(addPost(newPost));
     handleClose();
   };
 
@@ -104,9 +103,9 @@ export default function Create() {
     <React.Fragment>
       <ListItemButton onClick={handleClickOpen}>
         <ListItemIcon>
-          <AddBoxIcon sx={{ fontSize: iconSize, color: "black" }} />
+          <AddBoxIcon sx={{ fontSize: iconSize, color: 'black' }} />
         </ListItemIcon>
-        <ListItemText primary="Create" sx={{ color: "black" }} />
+        <ListItemText primary="Create" sx={{ color: 'black' }} />
       </ListItemButton>
       <BootstrapDialog
         onClose={handleClose}
@@ -114,8 +113,8 @@ export default function Create() {
         open={open}
         PaperProps={{
           style: {
-            minWidth: "800px",
-            minHeight: "500px",
+            minWidth: '800px',
+            minHeight: '500px',
           },
         }}
       >
@@ -126,18 +125,13 @@ export default function Create() {
               aria-label="close"
               onClick={handleClose}
               sx={{
-                position: "absolute",
+                position: 'absolute',
                 right: 8,
                 top: 8,
                 color: (theme) => theme.palette.grey[500],
               }}
             >
-              <IconButton
-                onClick={handleClose}
-                sx={{ position: "fixed", right: 8, top: 8 }}
-              >
-                <CloseIcon />
-              </IconButton>
+              <CloseIcon />
             </IconButton>
           </BootstrapDialogTitle>
         )}
@@ -148,7 +142,7 @@ export default function Create() {
               aria-label="close"
               onClick={handleClose}
               sx={{
-                position: "absolute",
+                position: 'absolute',
                 right: 8,
                 top: 8,
                 color: (theme) => theme.palette.grey[500],
@@ -161,11 +155,11 @@ export default function Create() {
           {step === 0 && (
             <Box
               sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                height: "100%",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                height: '100%',
               }}
             >
               <br />
@@ -183,45 +177,45 @@ export default function Create() {
           {step === 1 && photoSelected && (
             <Box
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
               }}
             >
               <BootstrapDialogTitle id="customized-dialog-title">
                 Crop
                 <IconButton
                   onClick={handleClose}
-                  sx={{ position: "fixed", right: 8, top: 8 }}
+                  sx={{ position: 'fixed', right: 8, top: 8 }}
                 >
                   <CloseIcon />
                 </IconButton>
               </BootstrapDialogTitle>
               <Box
                 sx={{
-                  position: "relative",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  height: "100%",
+                  position: 'relative',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  height: '100%',
                 }}
               >
                 <IconButton
                   onClick={handleBack}
-                  sx={{ position: "fixed", left: 360, top: 170 }}
+                  sx={{ position: 'fixed', left: 360, top: 170 }}
                 >
                   <ArrowBackIcon />
                 </IconButton>
                 <img
                   src={URL.createObjectURL(selectedFile)}
                   alt="Selected"
-                  style={{ maxWidth: "100%", maxHeight: "calc(100vh - 240px)" }}
+                  style={{ maxWidth: '100%', maxHeight: 'calc(100vh - 240px)' }}
                 />
                 <Button
                   variant="contained"
                   onClick={handleNext}
-                  sx={{ position: "fixed", right: 380, bottom: 620 }}
+                  sx={{ position: 'fixed', right: 380, bottom: 620 }}
                 >
                   Next
                 </Button>
@@ -231,19 +225,19 @@ export default function Create() {
           {step === 2 && (
             <Box
               sx={{
-                display: "flex",
-                height: "100%",
+                display: 'flex',
+                height: '100%',
               }}
             >
               <IconButton
                 onClick={handleClose}
-                sx={{ position: "fixed", right: 8, top: 8 }}
+                sx={{ position: 'fixed', right: 8, top: 8 }}
               >
                 <CloseIcon />
               </IconButton>
               <IconButton
                 onClick={handleBack}
-                sx={{ position: "fixed", left: 360, top: 170 }}
+                sx={{ position: 'fixed', left: 360, top: 170 }}
               >
                 <ArrowBackIcon />
               </IconButton>
@@ -251,30 +245,30 @@ export default function Create() {
               <Box
                 sx={{
                   flex: 1,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}
               >
                 <img
                   src={URL.createObjectURL(selectedFile)}
                   alt="Selected"
-                  style={{ maxWidth: "100%", width: "300px" }}
+                  style={{ maxWidth: '100%', width: '300px' }}
                 />
               </Box>
               <Box
                 sx={{
                   flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-start",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
                   padding: 2,
                 }}
               >
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                     marginBottom: 2,
                   }}
                 >
@@ -301,7 +295,7 @@ export default function Create() {
                 <Button
                   variant="contained"
                   onClick={handleShare}
-                  sx={{ position: "fixed", right: 380, bottom: 620 }}
+                  sx={{ position: 'fixed', right: 380, bottom: 620 }}
                 >
                   Share
                 </Button>
@@ -311,7 +305,7 @@ export default function Create() {
           <input
             type="file"
             ref={fileInputRef}
-            style={{ display: "none" }}
+            style={{ display: 'none' }}
             onChange={handleFileChange}
           />
         </DialogContent>
