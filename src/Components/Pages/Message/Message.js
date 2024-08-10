@@ -103,6 +103,7 @@ export default function Message() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
+
       <AppBar
         position="fixed"
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
