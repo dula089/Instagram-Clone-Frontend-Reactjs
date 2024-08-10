@@ -16,10 +16,8 @@ import { RiThreadsLine, RiMessengerLine } from "react-icons/ri";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MoreMenu from "../MoreButton/MoreMenu";
 import Create from "../Pages/Create/Create";
-import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom"; 
 import Box from "@mui/material/Box";
-import Message from "../Pages/Message/Message";
-
 import "./Nav.css";
 
 const iconSize = 30;
@@ -28,23 +26,32 @@ const middleIconsList = [
   {
     text: "Home",
     icon: <HomeIcon sx={{ fontSize: iconSize, color: "black" }} />,
+    path: "/home", 
   },
   {
     text: "Search",
     icon: <SearchIcon sx={{ fontSize: iconSize, color: "black" }} />,
+    path: "/search",
   },
   {
     text: "Explore",
     icon: <ExploreIcon sx={{ fontSize: iconSize, color: "black" }} />,
+    path: "/explore",
   },
   {
     text: "Reels",
     icon: <SlideshowIcon sx={{ fontSize: iconSize, color: "black" }} />,
+    path: "/reels",
   },
-  { text: "Messages", icon: <RiMessengerLine size={iconSize} color="black" /> },
+  {
+    text: "Messages",
+    icon: <RiMessengerLine size={iconSize} color="black" />,
+    path: "/message", 
+  },
   {
     text: "Notifications",
     icon: <FavoriteBorderIcon sx={{ fontSize: iconSize, color: "black" }} />,
+    path: "/notifications",
   },
 ];
 
@@ -52,15 +59,21 @@ const profileList = [
   {
     text: "Profile",
     icon: <AccountCircleIcon sx={{ fontSize: iconSize, color: "black" }} />,
+    path: "/profile",
   },
 ];
 
 const bottomIconsList = [
-  { text: "Threads", icon: <RiThreadsLine size={iconSize} color="black" /> },
+  { text: "Threads", icon: <RiThreadsLine size={iconSize} color="black" />, path: "/threads" },
 ];
 
 function Nav({ addPost }) {
   const drawerWidth = 240;
+  const navigate = useNavigate();  
+
+  const handleNavigation = (path) => {
+    navigate(path);  
+  };
 
   return (
     <div>
@@ -111,9 +124,9 @@ function Nav({ addPost }) {
           <Toolbar />
 
           <List>
-            {middleIconsList.map(({ text, icon }) => (
+            {middleIconsList.map(({ text, icon, path }) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={() => handleNavigation(path)}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText primary={text} sx={{ color: "black" }} />
                 </ListItemButton>
@@ -123,9 +136,9 @@ function Nav({ addPost }) {
           </List>
 
           <List>
-            {profileList.map(({ text, icon }) => (
+            {profileList.map(({ text, icon, path }) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={() => handleNavigation(path)}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText primary={text} sx={{ color: "black" }} />
                 </ListItemButton>
@@ -135,9 +148,9 @@ function Nav({ addPost }) {
         </div>
 
         <List>
-          {bottomIconsList.map(({ text, icon }) => (
+          {bottomIconsList.map(({ text, icon, path }) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => handleNavigation(path)}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={text} sx={{ color: "black" }} />
               </ListItemButton>
@@ -155,9 +168,9 @@ function Nav({ addPost }) {
             display: { xs: "flex", sm: "flex", md: "flex" },
           }}
         >
-          {middleIconsList.map(({ text, icon }) => (
+          {middleIconsList.map(({ text, icon, path }) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => handleNavigation(path)}>
                 <ListItemIcon>{icon}</ListItemIcon>
               </ListItemButton>
             </ListItem>

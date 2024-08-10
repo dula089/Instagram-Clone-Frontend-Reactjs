@@ -17,6 +17,7 @@ import Create from './Components/Pages/Create/Create';
 import EmojiiPicker from './Components/Pages/EmojiPicker/EmojiPicker';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Message from './Components/Pages/Message/Message';
+import Settings from './Components/Pages/Settings/Settings';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/message" element={<Message />} />
+          <Route path="/settings" element={<Settings/>}/>
         </Routes>
       
     </Provider>
