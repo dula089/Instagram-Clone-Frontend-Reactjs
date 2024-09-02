@@ -1,0 +1,20 @@
+th,
+td {
+  border: 1px solid lightgray;
+  margin: 0px 0px;
+  padding: 5px 5px;
+}
+th{
+    background-color: lightblue;
+}
+.table{
+   padding-left: 300px;
+   padding-top: 200px;
+}
+ .gpa{
+    margin-right: 1050px;
+ }
+ table{
+    height: 300px;
+    width: 900px;
+ }

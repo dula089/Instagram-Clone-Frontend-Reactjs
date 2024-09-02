@@ -1,15 +1,19 @@
 import "./Signup.css";
 import { useState } from "react";
+import { FaFacebookF } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; 
+import axios from "axios";
 
 function Signup() {
   const [formData, setFormData] = useState({
     username: "",
-    mobilenumber: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,16 +23,23 @@ function Signup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const newErrors = validateForm(formData);
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted successfully!");
-    } else {
-      console.log(`Form submission failed
-         due to validation errors.`);
+      try{
+        const response=await axios.post("http://localhost:8080/user/signup",{
+          userName:formData.username,
+          email:formData.email,
+          password:formData.password,
+        });
+        console.log(response.data);
+        navigate("/login");
+      }catch(error){
+        console.error("There was an error!",error);
+      }
     }
   };
 
@@ -48,8 +59,7 @@ function Signup() {
     if (!data.password) {
       errors.password = "Password is required";
     } else if (data.password.length < 8) {
-      errors.password = `Password must be at 
-        least 8 characters long`;
+      errors.password = "Password must be at least 8 characters long";
     }
 
     if (data.confirmPassword !== data.password) {
@@ -58,14 +68,26 @@ function Signup() {
 
     return errors;
   };
+
   return (
     <div>
       <div className="container">
-        <h1 style={{ fontFamily: "Pristina", fontSize: "70px" }}>Instagram</h1>
+        <h1
+          style={{
+            fontFamily: "Pristina",
+            fontSize: "70px",
+            marginLeft: "20px",
+          }}
+        >
+          Instagram
+        </h1>
         <p>Sign up to see photos and videos from your friends.</p>
         <div className="face">
           <a href="#" className="fb btn">
-            <p style={{ textAlign: "center" }}>Login with Facebook</p>
+            <p style={{ textAlign: "center" }}>
+              <FaFacebookF size={15} />
+              <p>Login with Facebook</p>
+            </p>
           </a>
         </div>
 
@@ -137,26 +159,26 @@ function Signup() {
               Learn More
             </a>
           </p>
-          <br></br>
+          <br />
           <p>
             By signing up, you agree to our
             <a
               href="https://help.instagram.com/581066165581870/?locale=en_US"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "blue" }}
             >
               Terms
             </a>
             ,{" "}
             <a
               href="https://www.facebook.com/privacy/policy"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "blue" }}
             >
               Privacy Policy
             </a>{" "}
             and{" "}
             <a
               href="https://privacycenter.instagram.com/policies/cookies/"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "blue" }}
             >
               Cookies Policy
             </a>
@@ -217,4 +239,5 @@ function Signup() {
     </div>
   );
 }
+
 export default Signup;

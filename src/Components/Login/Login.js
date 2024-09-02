@@ -1,5 +1,9 @@
 import { useState } from "react";
 import "./Login.css";
+import { FaFacebookF } from "react-icons/fa";
+import Footer from "../Footer/Footer";
+import axios from "axios";
+
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -17,16 +21,22 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const newErrors = validateForm(formData);
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted successfully!");
-    } else {
-      console.log(`Form submission failed
-         due to validation errors.`);
+     try{
+      const response=await axios.post("http://localhost:8080/user/login",{
+        userNameOrEmail:formData.email,
+        password:formData.password,
+      });
+      console.log(response.data);
+      window.location.href="/home";
+     }catch(error){
+      console.error("Login failed!",error);
+     }
     }
   };
 
@@ -42,8 +52,7 @@ function Login() {
     if (!data.password) {
       errors.password = "Password is required";
     } else if (data.password.length < 8) {
-      errors.password = `Password must be at 
-        least 8 characters long`;
+      errors.password = "Password must be at least 8 characters long";
     }
 
     return errors;
@@ -54,7 +63,13 @@ function Login() {
       <div className="img">
         <div className="img2">
           <div className="container1">
-            <h1 style={{ fontFamily: "Pristina", fontSize: "70px" }}>
+            <h1
+              style={{
+                fontFamily: "Pristina",
+                fontSize: "70px",
+                textAlign: "center",
+              }}
+            >
               Instagram
             </h1>
 
@@ -89,10 +104,45 @@ function Login() {
               </div>
 
               <button className="submit-button" type="submit">
-                Login
+                <span
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                    fontSize: "15px",
+                  }}
+                >
+                  Login
+                </span>
               </button>
+              <br />
+              <br></br>
+              <br></br>
+              <br></br>
+              <hr></hr>
+              <br></br>
+              <p>OR</p>
+              <br></br>
+              <hr></hr>
+              <br />
+              <div className="faceb">
+                <a href="#" className="fbook btn">
+                  <p style={{ textAlign: "center" }}>
+                    <FaFacebookF size={18} />
+                    &nbsp;&nbsp;&nbsp; Login with Facebook
+                  </p>
+                </a>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+
+              <a href="/forgot" className="forgot">
+                Forgot password?
+              </a>
             </form>
-            <br></br>
+            <br />
+
             <p>
               Not registered?{" "}
               <a href="/signup" className="signup1">
@@ -102,40 +152,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className="foot">
-        <footer>
-          <a href="" className="foot1">
-            Meta
-          </a>
-          <a href="" className="foot1">
-            About
-          </a>
-          <a href="" className="foot1">
-            Blog
-          </a>
-          <a href="" className="foot1">
-            Jobs
-          </a>
-          <a href="" className="foot1">
-            Help
-          </a>
-          <a href="" className="foot1">
-            API
-          </a>
-          <a href="" className="foot1">
-            Privacy
-          </a>
-          <a href="" className="foot1">
-            Terms
-          </a>
-          <a href="" className="foot1">
-            Locations
-          </a>
-          <a href="" className="foot1">
-            Contact Uploading & Non-Users
-          </a>
-        </footer>
-      </div>
+     <Footer></Footer>
     </div>
   );
 }

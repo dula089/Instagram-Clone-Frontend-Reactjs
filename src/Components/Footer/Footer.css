@@ -1,0 +1,25 @@
+.foot- {
+    margin-top: 250px;
+    padding-left: 200px;
+  }
+  .foot1 {
+    text-decoration: none;
+    color: lightslategray;
+    padding: 20px;
+  }
+  .foot1:hover {
+    opacity: 1;
+    text-decoration: underline;
+    color: gray;
+  }
+  @media screen and (max-width: 600px) {
+   .foot1{
+    display: inline-flex;
+    padding: 0px;
+    margin-left: 20px;
+   }
+    .foot-{
+      padding-left: 0px;
+      display:block;
+    }
+  }
