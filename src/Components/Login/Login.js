@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Login.css";
 import { FaFacebookF } from "react-icons/fa";
 import Footer from "../Footer/Footer";
+import axios from "axios";
 
 
 function Login() {
@@ -20,22 +21,22 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const newErrors = validateForm(formData);
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-     
-      localStorage.setItem("email", formData.email);
-      localStorage.setItem("password", formData.password);
-
-      console.log("Form submitted successfully!");
-
-      
-      window.location.href = "/home";
-    } else {
-      console.log("Form submission failed due to validation errors.");
+     try{
+      const response=await axios.post("http://localhost:8080/user/login",{
+        userNameOrEmail:formData.email,
+        password:formData.password,
+      });
+      console.log(response.data);
+      window.location.href="/home";
+     }catch(error){
+      console.error("Login failed!",error);
+     }
     }
   };
 

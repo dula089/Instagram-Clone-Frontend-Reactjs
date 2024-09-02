@@ -1,16 +1,19 @@
 import "./Signup.css";
 import { useState } from "react";
 import { FaFacebookF } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; 
+import axios from "axios";
 
 function Signup() {
   const [formData, setFormData] = useState({
     username: "",
-    mobilenumber: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,16 +23,23 @@ function Signup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const newErrors = validateForm(formData);
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted successfully!");
-    } else {
-      console.log(`Form submission failed
-         due to validation errors.`);
+      try{
+        const response=await axios.post("http://localhost:8080/user/signup",{
+          userName:formData.username,
+          email:formData.email,
+          password:formData.password,
+        });
+        console.log(response.data);
+        navigate("/login");
+      }catch(error){
+        console.error("There was an error!",error);
+      }
     }
   };
 
@@ -49,8 +59,7 @@ function Signup() {
     if (!data.password) {
       errors.password = "Password is required";
     } else if (data.password.length < 8) {
-      errors.password = `Password must be at 
-        least 8 characters long`;
+      errors.password = "Password must be at least 8 characters long";
     }
 
     if (data.confirmPassword !== data.password) {
@@ -59,6 +68,7 @@ function Signup() {
 
     return errors;
   };
+
   return (
     <div>
       <div className="container">
@@ -149,7 +159,7 @@ function Signup() {
               Learn More
             </a>
           </p>
-          <br></br>
+          <br />
           <p>
             By signing up, you agree to our
             <a
@@ -229,4 +239,5 @@ function Signup() {
     </div>
   );
 }
+
 export default Signup;
