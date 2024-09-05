@@ -4,7 +4,6 @@ import { FaFacebookF } from "react-icons/fa";
 import Footer from "../Footer/Footer";
 import axios from "axios";
 
-
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
@@ -21,22 +20,22 @@ function Login() {
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm(formData);
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-     try{
-      const response=await axios.post("http://localhost:8080/user/login",{
-        userNameOrEmail:formData.email,
-        password:formData.password,
-      });
-      console.log(response.data);
-      window.location.href="/home";
-     }catch(error){
-      console.error("Login failed!",error);
-     }
+      try {
+        const response = await axios.post("http://localhost:8080/user/login", {
+          userNameOrEmail: formData.email,
+          password: formData.password,
+        });
+        console.log(response.data);
+        window.location.href = "/home";
+      } catch (error) {
+        console.error("Login failed!", error);
+      }
     }
   };
 
@@ -152,7 +151,7 @@ function Login() {
           </div>
         </div>
       </div>
-     <Footer></Footer>
+      <Footer></Footer>
     </div>
   );
 }
