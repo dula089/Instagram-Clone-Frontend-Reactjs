@@ -23,10 +23,13 @@ import SlideshowOutlinedIcon from "@mui/icons-material/SlideshowOutlined";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
 import EmojiPicker from "emoji-picker-react";
+import Loader from "../../Loader/Loader";
+import { createPost } from "../../services/apiService"; 
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
+    position: "relative",
   },
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
@@ -49,7 +52,11 @@ export default function Create() {
   const [step, setStep] = useState(0);
   const [caption, setCaption] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
+
+ 
+  const username = localStorage.getItem("username") || "User";
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -92,7 +99,9 @@ export default function Create() {
     }
   };
 
-  const handleShare = () => {
+  const handleShare = async () => {
+    setLoading(true);
+  
     const newPost = {
       userId: 1,
       filterId: 1,
@@ -101,23 +110,19 @@ export default function Create() {
       location: "",
       description: caption,
     };
-    fetch("http://localhost:8080/post/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newPost),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        dispatch(addPost(data)); 
-        handleClose();
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+  
+    try {
+      const data = await createPost(newPost);
+      console.log("Success:", data);
+      dispatch(addPost(data));
+      handleClose();
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+  
 
   const handleEmojiSelect = (emoji) => {
     setCaption(caption + emoji.native);
@@ -172,11 +177,12 @@ export default function Create() {
                 top: 8,
                 color: (theme) => theme.palette.grey[500],
               }}
-            ></IconButton>
+            />
           </BootstrapDialogTitle>
         )}
         <Divider />
         <DialogContent dividers>
+          {loading && <Loader />}
           {step === 0 && (
             <Box
               sx={{
@@ -298,7 +304,8 @@ export default function Create() {
                   }}
                 >
                   <Avatar alt="Profile Avatar" src="/path/to/avatar.jpg" />
-                  <Box sx={{ marginLeft: 2 }}>Profile Name</Box>
+                  <Box sx={{ marginLeft: 2 }}>{username}</Box>{" "}
+                  {/* Use username from localStorage */}
                 </Box>
                 <TextField
                   placeholder="Write a caption"

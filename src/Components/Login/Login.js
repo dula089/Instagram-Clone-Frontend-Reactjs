@@ -1,16 +1,22 @@
 import { useState } from "react";
 import "./Login.css";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaEye, FaEyeSlash } from "react-icons/fa";
 import Footer from "../Footer/Footer";
-import axios from "axios";
+import Loader from "../Loader/Loader";
+import { login } from "../services/apiService";
+
 
 function Login() {
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,15 +32,32 @@ function Login() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
+      setLoading(true);
+      setLoginError("");
+
       try {
-        const response = await axios.post("http://localhost:8080/user/login", {
-          userNameOrEmail: formData.email,
-          password: formData.password,
-        });
-        console.log(response.data);
-        window.location.href = "/home";
+       
+        const data = await login(formData.username, formData.password);
+
+        
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("expiresIn", data.expiresIn);
+        localStorage.setItem("username", formData.username);
+
+        setSuccessMessage("Login Successful.");
+        setLoading(false);
+
+        
+        setTimeout(() => {
+          window.location.href = "/home";
+        }, 1500);
       } catch (error) {
-        console.error("Login failed!", error);
+        if (error.response && error.response.status === 401) {
+          setLoginError("Incorrect username or password. Please try again.");
+        } else {
+          setLoginError("An error occurred. Please try again later.");
+        }
+        setLoading(false);
       }
     }
   };
@@ -42,10 +65,8 @@ function Login() {
   const validateForm = (data) => {
     const errors = {};
 
-    if (!data.email.trim()) {
-      errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(data.email)) {
-      errors.email = "Email is invalid";
+    if (!data.username.trim()) {
+      errors.username = "Username is required";
     }
 
     if (!data.password) {
@@ -57,8 +78,14 @@ function Login() {
     return errors;
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
   return (
     <div>
+      {loading && <Loader />}
+
       <div className="img">
         <div className="img2">
           <div className="container1">
@@ -72,56 +99,86 @@ function Login() {
               Instagram
             </h1>
 
+            {successMessage && (
+              <p
+                className="success-message"
+                style={{ textAlign: "center", color: "green" }}
+              >
+                {successMessage}
+              </p>
+            )}
+
+            {loginError && (
+              <p
+                className="error-message"
+                style={{ textAlign: "center", color: "red" }}
+              >
+                {loginError}
+              </p>
+            )}
+
             <form onSubmit={handleSubmit}>
               <div>
                 <label className="form-label"></label>
                 <input
                   className="form-input"
-                  type="email"
-                  name="email"
-                  value={formData.email}
+                  type="text"
+                  name="username"
+                  value={formData.username}
                   onChange={handleChange}
-                  placeholder="Email"
+                  placeholder="Username"
+                  disabled={loading}
                 />
-                {errors.email && (
-                  <span className="error-message">{errors.email}</span>
+                {errors.username && (
+                  <span className="error-message">{errors.username}</span>
                 )}
               </div>
-              <div>
+              <div className="password-container">
                 <label className="form-label"></label>
                 <input
                   className="form-input"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Password"
+                  disabled={loading}
                 />
+                <span
+                  className="password-toggle-icon"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
                 {errors.password && (
                   <span className="error-message">{errors.password}</span>
                 )}
               </div>
 
-              <button className="submit-button" type="submit">
-                <span
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                    fontSize: "15px",
-                  }}
-                >
-                  Login
-                </span>
+              <button className="submit-button" type="submit" disabled={loading}>
+                {loading ? (
+                  <span>Loading...</span>
+                ) : (
+                  <span
+                    style={{
+                      textDecoration: "none",
+                      color: "white",
+                      fontSize: "15px",
+                    }}
+                  >
+                    Login
+                  </span>
+                )}
               </button>
               <br />
-              <br></br>
-              <br></br>
-              <br></br>
-              <hr></hr>
-              <br></br>
+              <br />
+              <br />
+              <br />
+              <hr />
+              <br />
               <p>OR</p>
-              <br></br>
-              <hr></hr>
+              <br />
+              <hr />
               <br />
               <div className="faceb">
                 <a href="#" className="fbook btn">
@@ -151,7 +208,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }
