@@ -30,7 +30,7 @@ function Signup() {
 
     if (Object.keys(newErrors).length === 0) {
       try{
-        const response=await axios.post("http://localhost:8080/user/signup",{
+        const response=await axios.post("http://localhost:8080/auth/signup",{
           userName:formData.username,
           email:formData.email,
           password:formData.password,
