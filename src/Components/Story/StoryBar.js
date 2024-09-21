@@ -50,6 +50,16 @@ const stories = [
     username: "user9",
     imageUrl: "https://picsum.photos/id/1045/60/60",
   },
+  {
+    id: 10,
+    username: "user10",
+    imageUrl: "https://picsum.photos/id/1045/60/60",
+  },
+  // {
+  //   id: 11,
+  //   username: "user11",
+  //   imageUrl: "https://picsum.photos/id/1045/60/60",
+  // },
 ];
 
 export default function StoryBar() {

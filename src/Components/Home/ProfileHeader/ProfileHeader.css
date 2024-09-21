@@ -1,0 +1,19 @@
+.profile-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+}

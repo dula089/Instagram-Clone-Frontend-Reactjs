@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
@@ -16,9 +16,10 @@ import { RiThreadsLine, RiMessengerLine } from "react-icons/ri";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MoreMenu from "../MoreButton/MoreMenu";
 import Create from "../Pages/Create/Create";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import "./Nav.css";
+import Loader from "../Loader/Loader"; // Import the Loader component
 
 const iconSize = 30;
 
@@ -26,7 +27,7 @@ const middleIconsList = [
   {
     text: "Home",
     icon: <HomeIcon sx={{ fontSize: iconSize, color: "black" }} />,
-    path: "/home", 
+    path: "/home",
   },
   {
     text: "Search",
@@ -46,7 +47,7 @@ const middleIconsList = [
   {
     text: "Messages",
     icon: <RiMessengerLine size={iconSize} color="black" />,
-    path: "/message", 
+    path: "/message",
   },
   {
     text: "Notifications",
@@ -64,15 +65,24 @@ const profileList = [
 ];
 
 const bottomIconsList = [
-  { text: "Threads", icon: <RiThreadsLine size={iconSize} color="black" />, path: "/threads" },
+  {
+    text: "Threads",
+    icon: <RiThreadsLine size={iconSize} color="black" />,
+    path: "/threads",
+  },
 ];
 
 function Nav({ addPost }) {
   const drawerWidth = 240;
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false); // State to manage loading
 
   const handleNavigation = (path) => {
-    navigate(path);  
+    setLoading(true); // Set loading to true when navigating
+    setTimeout(() => {
+      navigate(path);
+      setLoading(false); // Set loading to false after navigation
+    }, 500); // Simulate delay for loading (adjust as needed)
   };
 
   return (
@@ -184,6 +194,8 @@ function Nav({ addPost }) {
           </ListItem>
         </List>
       </div>
+
+      {loading && <Loader />} {/* Conditionally render the Loader component */}
     </div>
   );
 }

@@ -1,0 +1,42 @@
+.edit-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .avatar-section {
+    position: relative;
+  }
+  
+  .avatar-section input {
+    display: none;
+  }
+  
+  .avatar-section label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .avatar-section label:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .edit-profile-container h4 {
+    margin-bottom: 16px;
+  }
+  
+  .edit-profile-container .MuiTextField-root {
+    margin-bottom: 16px;
+  }
+  

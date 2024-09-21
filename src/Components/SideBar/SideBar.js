@@ -21,10 +21,10 @@ export default function SlideBar() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      {/* <AppBar
+      <AppBar
         position="relative"
         sx={{ width: `calc(100% - ${drawerWidth}px)`, mr: `${drawerWidth}px` }}
-      ></AppBar> */}
+      ></AppBar>
       <Drawer
         sx={{
           width: drawerWidth,
@@ -43,9 +43,7 @@ export default function SlideBar() {
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           Profile Name
         </Stack>
-        
       </Drawer>
-      
     </Box>
   );
 }
